@@ -20,9 +20,7 @@
 const rewire = require('rewire');
 
 const CordovaError = require('cordova-common').CordovaError;
-const GenericBuilder = require('../../../bin/templates/cordova/lib/builders/GenericBuilder');
-const GradleBuilder = require('../../../bin/templates/cordova/lib/builders/GradleBuilder');
-const StudioBuilder = require('../../../bin/templates/cordova/lib/builders/StudioBuilder');
+const ProjectBuilder = require('../../../bin/templates/cordova/lib/builders/ProjectBuilder');
 
 describe('builders', () => {
     let builder;
@@ -32,19 +30,14 @@ describe('builders', () => {
     });
 
     describe('getBuilder', () => {
-        it('should return an instance of GradleBuilder', () => {
+        it('should return an instance of ProjectBuilder', () => {
             const newBuilder = builder.getBuilder('gradle');
-            expect(newBuilder).toEqual(jasmine.any(GradleBuilder));
+            expect(newBuilder).toEqual(jasmine.any(ProjectBuilder));
         });
 
-        it('should return an instance of StudioBuilder', () => {
+        it('should return an instance of ProjectBuilder', () => {
             const newBuilder = builder.getBuilder('studio');
-            expect(newBuilder).toEqual(jasmine.any(StudioBuilder));
-        });
-
-        it('should return an instance of GenericBuilder', () => {
-            const newBuilder = builder.getBuilder('none');
-            expect(newBuilder).toEqual(jasmine.any(GenericBuilder));
+            expect(newBuilder).toEqual(jasmine.any(ProjectBuilder));
         });
 
         it('should throw an error if the selected builder does not exist', () => {
